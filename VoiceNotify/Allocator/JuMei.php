@@ -28,7 +28,7 @@ class JuMei implements Allocator
         $this->notifyUrl = $config['notifyUrl'] ?? '';
     }
 
-    public function Send(string $mobile, array $param = []): Response
+    public function send(string $mobile, array $param = []): Response
     {
         $time = $this->millisecond();
         $postParam = [
@@ -36,10 +36,10 @@ class JuMei implements Allocator
             'timestamp' => $time,
             'sign' => '',
             'mobile' => $mobile,
-            'templateId' => $param['templateId'] ?: $this->templateId,
+            'templateId' => (isset($param['templateId']) and $param['templateId']) ? $param['templateId'] : $this->templateId,
             'param' => $param['param'] ?? '',
             'playTimes' => $param['playTimes'] ?? '',
-            'notifyUrl' => $param['notifyUrl'] ?? $this->notifyUrl,
+            'notifyUrl' => (isset($param['notifyUrl']) and $param['notifyUrl']) ? $param['notifyUrl'] : $this->notifyUrl,
             'notifyData' => $param['notifyData'] ?? ''
         ];
         $this->encrypt($postParam);

@@ -21,7 +21,7 @@ class VoiceNotify
         }
     }
 
-    public function send($param, $facilitator = ''): Response
+    public function send(string $phone, array $param, string $facilitator = ''): Response
     {
         if (!$facilitator) {
             $allocator = reset($this->allocators);
@@ -30,7 +30,7 @@ class VoiceNotify
         } else {
             $allocator = reset($this->allocators);
         }
-        return $allocator->send($param);
+        return $allocator->send($phone, $param);
     }
 
     public function notify($facilitator, $data): Notify
