@@ -21,6 +21,12 @@ class JuMeiResponse extends Response
                 } else {
                     $this->code = $code;
                 }
+                if ($this->code !== '200') {
+                    if ($this->body['msg'] ?? '') {
+                        $this->setError($this->body['msg']);
+                        $this->message = $this->body['msg'];
+                    }
+                }
                 $this->taskNo = $this->body['taskNo'] ?? '';
                 $this->callId = $this->body['data']['callId'] ?? '';
             } else {
