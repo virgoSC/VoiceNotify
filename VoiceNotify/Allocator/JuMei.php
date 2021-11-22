@@ -75,7 +75,7 @@ class JuMei implements Allocator
         return (new JuMeiNoNotify())
             ->setCallId($data['callId'] ?? '')
             ->setCallDesc($data['callDesc'] ?? '')
-            ->setCallTime($data[''])
+            ->setCallTime($data['callTime'] ?? date('Y-m-d H:i:s'))
             ->setCallStatus($data['callStatus'] ?? 'callStatus')
             ->setCallStatusText($data['callStatusText'] ?? '')
             ->setNotifyData($data['notifyData'] ?? '');
